@@ -1,22 +1,17 @@
 const fs = require("fs");
-
 const keys = require("./keys.json");
 
-// const command = process.argv[2]
-// const msg = process.argv.slice(3).join(' ')
 const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890"
 
 function generateRandomChar(){
 
     const char = alphabet[Math.floor(Math.random() * alphabet.length)]
-
     return char
 }
 
 const crypto = {
 
     generateKey: async () => {
-    
     
         let keyId = ""
         let replaces = {}
@@ -30,9 +25,7 @@ const crypto = {
                 if(i.includes(_rep) || _rep.includes(i)){
                     return false
                 }
-
             })
-
             return true
         }
 
@@ -57,18 +50,13 @@ const crypto = {
                         else{
                             replaceChar += char
                         }
-
                     }
-
                     generateChar()
-
                 }
-
                 used.push(replaceChar)
                 _replaces.push(replaceChar)
-
             }
-            
+    
             replaces[i] = _replaces
         })
 
@@ -90,10 +78,8 @@ const crypto = {
                         replaceChar += char
                     }
                 }
-
                 generateChar()
             }
-
             used.push(replaceChar)
             space.push(replaceChar)
         }
@@ -101,7 +87,6 @@ const crypto = {
         for(let i = 0; i <= 4; i++){
 
             let char = generateRandomChar()
-
             keyId += char
         }
 
@@ -112,7 +97,6 @@ const crypto = {
         }
     
         keys.push(key) 
-    
         fs.writeFileSync("keys.json",JSON.stringify(keys))
     },
     
@@ -167,9 +151,7 @@ const crypto = {
         }
     
         key.space.forEach(i => {
-    
             if(decryptText.includes(i)){
-    
                 decryptText = decryptText.split(i).join(" ")
             }
         })
@@ -184,7 +166,6 @@ const crypto = {
     clearKeys: () => {
 
         let _keys = []
-
         fs.writeFileSync("keys.json",JSON.stringify(_keys))
     }
 
