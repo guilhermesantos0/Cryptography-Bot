@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-const dotenv = require("dotenv").config();
+require("dotenv").config();
 const crypto = require("./crypto");
 const config = require("./config.json");
 
@@ -119,7 +119,6 @@ client.on('interactionCreate', async(interaction) => {
     }
 
     cmd.run(interaction, args);
-
 })
 
 client.on('ready', async ()  => {
@@ -134,7 +133,6 @@ client.on('ready', async ()  => {
         i == config.activities.length - 1 ? i = 0 : i++
 
     },5000)
-
 })
 
 client.on('messageCreate', async(message) => {
@@ -198,9 +196,7 @@ client.on('messageCreate', async(message) => {
                     if(c.customId == "option"){
 
                         option = c.values[0]
-
                     }
-
                 }
 
                 if(c.isButton()){
@@ -263,11 +259,8 @@ client.on('messageCreate', async(message) => {
                                                         },5000)
                                                     }).catch(err => {})
                                                 })
-
                                             }
-
                                         })
-
                                     }).then(msg => {
 
                                         setTimeout(() => {
@@ -275,13 +268,9 @@ client.on('messageCreate', async(message) => {
                                             msg.delete().catch(err => {})
 
                                         },60000)
-
                                     })
-
                                 })
-
                             })
-
                         }else if(option == "decrypt"){
 
                             const nEmbed = new Discord.EmbedBuilder()
@@ -334,15 +323,11 @@ client.on('messageCreate', async(message) => {
                                                         setTimeout(() => {
 
                                                             tmsg.delete().catch(err => {})
-
                                                         },5000)
                                                     }).catch(err => {})
                                                 })
-
                                             }
-
                                         })
-
                                     }).then(msg => {
 
                                         setTimeout(() => {
@@ -350,13 +335,9 @@ client.on('messageCreate', async(message) => {
                                             msg?.delete().catch(err => {})
 
                                         },60000)
-
                                     })
-
                                 })
-
                             })
-
                         }else if(option == "generatekey"){
 
                             crypto.generateKey();
@@ -367,56 +348,12 @@ client.on('messageCreate', async(message) => {
                             .setColor(config.color)
 
                             message.reply({ embeds: [embed] })
-
                         }
-
                     }
-
                 }
-
             })
-
         })
-
     }
-
 })
 
-if(process.argv.length > 2){
-
-    run = async () => {
-        const command = process.argv[2]
-        const msg = process.argv.slice(3).join(' ')
-    
-        if(command == "1"){
-    
-            const _msg = await crypto.encryptText(msg)
-            console.log(_msg)
-    
-        }else if(command == "2"){
-
-            const _msg = await crypto.decryptText(msg)
-            console.log(_msg)
-
-        }else if(command == "3"){
-
-            crypto.generateKey();
-
-        }else if(command == "4"){
-
-            crypto.checkErrors();
-
-        }else if(command == "5"){
-
-            crypto.clearKeys()
-
-        }
-    }
-
-    run();
-
-}else{
-
-    client.login(process.env.TOKEN)
-    
-}
+client.login(process.env.TOKEN)
