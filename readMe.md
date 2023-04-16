@@ -6,16 +6,16 @@ Bot de Criptografia de texto desenvolvido em JavaScript.
 
 Comandos disponíveis:
 
-``` createkey ```
+``` /createkey ```
     - Gera uma nova chave de criptografia
 
-``` encrypt [texto]```
+``` /encrypt [texto]```
     - Criptografa um texto
 
-``` decrypt [texto]```
+``` /decrypt [texto]```
     - Descriptografa um texto
 
-``` backup ```
+``` /backup ```
     - Manda um backup das chaves disponíveis
 
 O BOT também dará estas opções caso seja mencionado!
