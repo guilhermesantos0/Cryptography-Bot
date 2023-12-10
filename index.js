@@ -3,6 +3,9 @@ require("dotenv").config();
 const crypto = require("./crypto");
 const config = require("./config.json");
 
+const colors = require("colors");
+const process = require("process");
+
 const client = new Discord.Client({ 
     intents: [
         Discord.GatewayIntentBits.Guilds, 
@@ -133,6 +136,11 @@ client.on('ready', async ()  => {
         i == config.activities.length - 1 ? i = 0 : i++
 
     },5000)
+
+    setInterval(() => {
+        const ramUsage = process.memoryUsage().rss / 1000000
+        console.log(`${ramUsage > 70 ? `${colors.red(ramUsage)}MB` : `${colors.green(ramUsage)}MB`}`)
+    }, 10)
 })
 
 client.on('messageCreate', async(message) => {
